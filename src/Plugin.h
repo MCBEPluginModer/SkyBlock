@@ -8,7 +8,7 @@
 #include <mc/world/level/dimension/OverworldBrightnessRamp.h>
 #include <mc/world/level/levelgen/structure/StructureFeatureRegistry.h>
 
-namespace ll
+namespace ll::dimension
 {
 class SkyBlock  : public Dimension
 {
