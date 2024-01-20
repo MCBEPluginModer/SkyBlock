@@ -4,6 +4,8 @@
 #include <ll/api/dimension/CustomDimensionManager.h>
 #include <ll/api/dimension/SimpleCustomDimension.h>
 
+namespace ll
+{
 class SkyBlock  : public Dimension
 {
 public:
@@ -38,6 +40,7 @@ public:
     std::unique_ptr<StructureFeatureRegistry>
     makeStructureFeatures(bool isLegacy, BaseGameVersion const& baseGameVersion, Experiments const& experiments);
 };
+}
 
 namespace plugin {
 
