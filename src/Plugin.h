@@ -2,6 +2,7 @@
 
 #include <ll/api/plugin/NativePlugin.h>
 #include <ll/api/dimension/CustomDimensionManager.h>
+#include <ll/api/dimension/SimpleCustomDimension.h>
 
 class SkyBlock  : public Dimension
 {
