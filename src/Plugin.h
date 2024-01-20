@@ -3,6 +3,10 @@
 #include <ll/api/plugin/NativePlugin.h>
 #include <ll/api/dimension/CustomDimensionManager.h>
 #include <ll/api/dimension/SimpleCustomDimension.h>
+#include <mc/world/level/dimension/Dimension.h>
+#include <mc/world/level/dimension/NetherBrightnessRamp.h>
+#include <mc/world/level/dimension/OverworldBrightnessRamp.h>
+#include <mc/world/level/levelgen/structure/StructureFeatureRegistry.h>
 
 namespace ll
 {
