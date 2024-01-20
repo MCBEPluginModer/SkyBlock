@@ -26,9 +26,9 @@
 
 namespace ll::dimension {
 
-static ll::Logger loggerMoreDim("ТуцВшьутышщт");
+static ll::Logger loggerMoreDim("SkyBlock");
 
-SimpleCustomDimension::SimpleCustomDimension(std::string const& name, DimensionFactoryInfo const& info)
+SkyBlock::SkyBlock(std::string const& name, DimensionFactoryInfo const& info)
 : Dimension(info.level, info.dimId, {-64, 320}, info.scheduler, name) {
     loggerMoreDim.debug(__FUNCTION__ " dimension name:{}", name);
     mDefaultBrightness.sky = Brightness::MAX;
@@ -40,20 +40,20 @@ SimpleCustomDimension::SimpleCustomDimension(std::string const& name, DimensionF
     mDimensionBrightnessRamp->buildBrightnessRamp();
 }
 
-CompoundTag SimpleCustomDimension::generateNewData(uint seed, GeneratorType generatorType) {
+CompoundTag SkyBlock::generateNewData(uint seed, GeneratorType generatorType) {
     CompoundTag result;
     result["seed"]          = seed;
     result["generatorType"] = magic_enum::enum_name(generatorType);
     return result;
 }
 
-void SimpleCustomDimension::init() {
+void SkyBlock::init() {
     loggerMoreDim.debug(__FUNCTION__);
     setSkylight(false);
     Dimension::init();
 }
 
-std::unique_ptr<WorldGenerator> SimpleCustomDimension::createGenerator() {
+std::unique_ptr<WorldGenerator> SkyBlock::createGenerator() {
     loggerMoreDim.debug(__FUNCTION__);
     auto& level     = getLevel();
     auto& levelData = level.getLevelData();
@@ -65,30 +65,30 @@ std::unique_ptr<WorldGenerator> SimpleCustomDimension::createGenerator() {
     
 }
 
-void SimpleCustomDimension::upgradeLevelChunk(ChunkSource& cs, LevelChunk& lc, LevelChunk& generatedChunk) {
+void SkyBlock::upgradeLevelChunk(ChunkSource& cs, LevelChunk& lc, LevelChunk& generatedChunk) {
     loggerMoreDim.debug(__FUNCTION__);
     auto blockSource = BlockSource(getLevel(), *this, cs, false, true, false);
     VanillaLevelChunkUpgrade::_upgradeLevelChunkViaMetaData(lc, generatedChunk, blockSource);
     VanillaLevelChunkUpgrade::_upgradeLevelChunkLegacy(lc, blockSource);
 }
 
-void SimpleCustomDimension::fixWallChunk(ChunkSource& cs, LevelChunk& lc) {
+void SkyBlock::fixWallChunk(ChunkSource& cs, LevelChunk& lc) {
     loggerMoreDim.debug(__FUNCTION__);
     auto blockSource = BlockSource(getLevel(), *this, cs, false, true, false);
     VanillaLevelChunkUpgrade::fixWallChunk(lc, blockSource);
 }
 
-bool SimpleCustomDimension::levelChunkNeedsUpgrade(LevelChunk const& lc) const {
+bool SkyBlock::levelChunkNeedsUpgrade(LevelChunk const& lc) const {
     loggerMoreDim.debug(__FUNCTION__);
     return VanillaLevelChunkUpgrade::levelChunkNeedsUpgrade(lc);
 }
-void SimpleCustomDimension::_upgradeOldLimboEntity(CompoundTag& tag, ::LimboEntitiesVersion vers) {
+void SkyBlock::_upgradeOldLimboEntity(CompoundTag& tag, ::LimboEntitiesVersion vers) {
     loggerMoreDim.debug(__FUNCTION__);
     auto isTemplate = getLevel().getLevelData().isFromWorldTemplate();
     return VanillaLevelChunkUpgrade::upgradeOldLimboEntity(tag, vers, isTemplate);
 }
 
-Vec3 SimpleCustomDimension::translatePosAcrossDimension(Vec3 const& fromPos, DimensionType fromId) const {
+Vec3 SkyBlock::translatePosAcrossDimension(Vec3 const& fromPos, DimensionType fromId) const {
     loggerMoreDim.debug(__FUNCTION__);
     Vec3 topos;
     VanillaDimensions::convertPointBetweenDimensions(
@@ -106,17 +106,17 @@ Vec3 SimpleCustomDimension::translatePosAcrossDimension(Vec3 const& fromPos, Dim
     return topos;
 }
 
-short SimpleCustomDimension::getCloudHeight() const { return 256; }
+short SkyBlock::getCloudHeight() const { return 256; }
 
-bool SimpleCustomDimension::hasPrecipitationFog() const { return false; }
+bool SkyBlock::hasPrecipitationFog() const { return false; }
 
 std::unique_ptr<ChunkSource>
-SimpleCustomDimension::_wrapStorageForVersionCompatibility(std::unique_ptr<ChunkSource> cs, ::StorageVersion /*ver*/) {
+SkyBlock::_wrapStorageForVersionCompatibility(std::unique_ptr<ChunkSource> cs, ::StorageVersion /*ver*/) {
     loggerMoreDim.debug(__FUNCTION__);
     return cs;
 }
 
-mce::Color SimpleCustomDimension::getBrightnessDependentFogColor(mce::Color const& color, float brightness) const {
+mce::Color SkyBlock::getBrightnessDependentFogColor(mce::Color const& color, float brightness) const {
     loggerMoreDim.debug(__FUNCTION__);
     float temp   = (brightness * 0.94f) + 0.06f;
     float temp2  = (brightness * 0.8f) + 0.09f;
@@ -127,7 +127,7 @@ mce::Color SimpleCustomDimension::getBrightnessDependentFogColor(mce::Color cons
     return result;
 };
 
-std::unique_ptr<StructureFeatureRegistry> SimpleCustomDimension::makeStructureFeatures(
+std::unique_ptr<StructureFeatureRegistry> SkyBlock::makeStructureFeatures(
     bool                   isLegacy,
     BaseGameVersion const& baseGameVersion,
     Experiments const&     experiments
