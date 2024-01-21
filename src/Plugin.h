@@ -46,11 +46,12 @@
 #include <mc/world/level/levelgen/structure/StructureFeatureRegistry.h>
 #include <mc/world/level/levelgen/structure/StructureFeatureType.h>
 #include <mc/world/level/levelgen/v1/Aquifer.h>
-#include <mc/world/level/levelgen/v1/NetherGenerator.h>
+#include <mc/world/level/levelgen/v1/Ove
 #include <mc/world/level/levelgen/v1/OverworldGenerator2d.h>
 #include <mc/world/level/levelgen/v1/OverworldGeneratorMultinoise.h>
 #include <mc/world/level/levelgen/v1/WorldGenCache.h>
 #include <mc/world/level/storage/LevelData.h>
+#include <mc/wmc/world/level/levelgen/VoidGenerator.h>
 
 class IslandGenerator : public VoidGenerator
 {
