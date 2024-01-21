@@ -24,6 +24,12 @@
 
 #include "magic_enum.hpp"
 
+bool IslandGenerator::postProcess(ChunkViewSource& chunkViewSource)
+{
+    //TODO Написать генерацию острова и сундука на нем с деревом
+    return true;
+}
+
 namespace ll::dimension {
 
 static ll::Logger loggerMoreDim("SkyBlock");
